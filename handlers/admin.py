@@ -9,7 +9,7 @@ from utils.states import Admin
 
 @dp.message_handler(commands=["admin"])
 async def admin_command(message: types.Message):
-    if message.from_user.id not in ADMIN_LIST:
+    if message.chat.id not in ADMIN_LIST:
         await message.reply(messages.NOT_ADMIN)
     else:
         await message.reply(messages.ADMIN_MENU, reply_markup=buttons.admin_menu)

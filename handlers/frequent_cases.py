@@ -9,9 +9,11 @@ from app import dp
 @dp.message_handler(commands=["start", "help"])
 async def welcome_command(message: types.Message):
     print(message)
+
     #await channel_editor.create_post(message, "lalal", "")
-    if not user_not_in_db(message.from_user.id):
-        add_new_user(message.from_user.id, f"{message.from_user.first_name} {message.from_user.last_name}")
+    if not user_not_in_db(message.chat.id):
+
+        add_new_user(message.chat.id, f"{message.chat.first_name} {message.chat.last_name}")
 
     await message.reply(
         messages.START_MESSAGE,
@@ -21,7 +23,7 @@ async def welcome_command(message: types.Message):
 
 @dp.message_handler(lambda m: m.text == messages.SHOW_ID_TEXT)
 async def show_id_command(message: types.Message):
-    await message.reply(messages.SHOW_ID(message.from_user.id), reply_markup=buttons.menu)
+    await message.reply(messages.SHOW_ID(message.chat.id), reply_markup=buttons.menu)
 
 
 @dp.message_handler(lambda m: m.text == buttons.back_to_menu_btn.text)

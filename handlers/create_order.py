@@ -60,7 +60,7 @@ async def add_document_command(message: types.Message, state: FSMContext):
     if message.caption:
         async with state.proxy() as data:
             information = data.as_dict()
-        reports.add_new(user_id=message.from_user.id, path=information['set_file'], description=message.caption)
+        reports.add_new(user_id=message.chat.id, path=information['set_file'], description=message.caption)
         await state.finish()
         await message.answer(messages.UPDATED)
         report = reports.get_report_by_path(information['set_file'])
@@ -79,7 +79,7 @@ async def add_description_command(message: types.Message, state: FSMContext):
         return
     async with state.proxy() as data:
         information = data.as_dict()
-    reports.add_new(user_id=message.from_user.id, path=information['set_file'], description=message.text)
+    reports.add_new(user_id=message.chat.id, path=information['set_file'], description=message.text)
     await state.finish()
     await message.answer(messages.UPDATED)
     report = reports.get_report_by_path(information['set_file'])
