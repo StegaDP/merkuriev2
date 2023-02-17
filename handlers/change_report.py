@@ -20,7 +20,7 @@ async def write_file(message):
 
 @dp.message_handler(lambda m: m.text == buttons.change_report_btn.text)
 async def approve_order_command(message):
-    if not await connection_approved(ConnectionMode.approve, message):
+    if not await connection_approved(ConnectionMode.create, message):
         return
     not_approved = get_reports_to_approve()
     await message.answer(messages.count_of_founded_documents(len(not_approved)))
