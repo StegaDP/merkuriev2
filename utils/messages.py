@@ -1,3 +1,4 @@
+from db.reports import get_reports_history
 from db.user import get_all_user_information, u_info
 
 START_MESSAGE = "Добро пожаловать в бот!"
@@ -46,6 +47,16 @@ def pay_message(report):
 def count_of_founded_documents(count):
     return f"Найдено {count} документов!"
 
+
+def search_message():
+    return "Для поиска введите запрос (поиск доступен по полям, сумме и описанию):"
+
+
+def search_found(text, report):
+    m = history_message(report)
+    if text.lower() in m.lower():
+        return m
+    return ''
 
 def history_message(report):
     message = pay_message(report)

@@ -57,12 +57,26 @@ async def add_document_command(message: types.Message, state: FSMContext):
         await message.answer(messages.INCORRECT_MESSAGE)
         return
 
+    if message.caption:
+        async with state.proxy() as data:
+            information = data.as_dict()
+        reports.add_new(user_id=message.from_user.id, path=information['set_file'], description=message.caption)
+        await state.finish()
+        await message.answer(messages.UPDATED)
+        report = reports.get_report_by_path(information['set_file'])
+        await channel_editor.create_post(messages.approve_message(report), information['set_file'], report)
+        await fq.welcome_command(message)
+        return
+
     await message.answer(messages.WRITE_DESCRIPTION)
     await Report.set_description.set()
 
 
 @dp.message_handler(state=Report.set_description)
 async def add_description_command(message: types.Message, state: FSMContext):
+    if message.text == 'Вернуться в меню':
+        await fq.welcome_command(message)
+        return
     async with state.proxy() as data:
         information = data.as_dict()
     reports.add_new(user_id=message.from_user.id, path=information['set_file'], description=message.text)

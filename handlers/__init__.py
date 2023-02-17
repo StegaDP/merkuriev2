@@ -3,6 +3,8 @@ from .admin import dp
 from .create_order import dp
 from .approve_order import dp
 from .pay_order import dp
+from .search import dp
+from .change_report import dp
 from .order_history import dp
 
 
