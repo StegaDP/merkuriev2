@@ -40,7 +40,7 @@ def pay_message(report):
     if report[4] is None:
         return approve_message(report)
     message = approve_message(
-        report) + f"\n🟡️Согласовано: {u_info(report[6])[4]}\nДата: {str(report[4]).split('.')[0].split()[0]}\n----------------------------\n"
+        report) + f"🟡️Согласовано: {u_info(report[6])[4]}\nДата: {str(report[4]).split('.')[0].split()[0]}\n----------------------------\n"
     return message
 
 
@@ -63,4 +63,4 @@ def history_message(report):
     if report[5] is None:
         return message
     print(report)
-    return message + f"\n🟢Оплачено: {u_info(report[7])[4]}\nДата: {str(report[5]).split('.')[0].split()[0]}"
+    return message + f"🟢Оплачено: {u_info(report[7])[4]}\nДата: {str(report[5]).split('.')[0].split(':')[:-1]}"
