@@ -32,7 +32,7 @@ def get_all_posibilities():
 
 
 def approve_message(report):
-    message = f"⚪Создано пользователем: {u_info(report[0])[4]}\nОписание: {report[2]}\nДата создания: {str(report[3]).split('.')[0]}\n----------------------------\n"
+    message = f"⚪Создано: {u_info(report[0])[4]}\nОписание: {report[2]}\nДата: {str(report[3]).split('.')[0].split()[0]}\n----------------------------\n"
     return message
 
 
@@ -40,7 +40,7 @@ def pay_message(report):
     if report[4] is None:
         return approve_message(report)
     message = approve_message(
-        report) + f"\n🟡️Согласовано пользователем: {u_info(report[6])[4]}\nДата согласования: {str(report[4]).split('.')[0]}\n----------------------------\n"
+        report) + f"\n🟡️Согласовано: {u_info(report[6])[4]}\nДата: {str(report[4]).split('.')[0].split()[0]}\n----------------------------\n"
     return message
 
 
@@ -63,4 +63,4 @@ def history_message(report):
     if report[5] is None:
         return message
     print(report)
-    return message + f"\n🟢Оплчено пользователем: {u_info(report[7])[4]}\nДата оплаты: {str(report[5]).split('.')[0]}"
+    return message + f"\n🟢Оплачено: {u_info(report[7])[4]}\nДата: {str(report[5]).split('.')[0].split()[0]}"

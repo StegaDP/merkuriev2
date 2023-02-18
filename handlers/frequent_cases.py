@@ -8,7 +8,9 @@ from app import dp
 
 @dp.message_handler(commands=["start", "help"])
 async def welcome_command(message: types.Message):
-    print(message)
+    print(message.chat.id)
+    print(message.chat.first_name)
+    print(message.chat.last_name)
 
     #await channel_editor.create_post(message, "lalal", "")
     if not user_not_in_db(message.chat.id):
