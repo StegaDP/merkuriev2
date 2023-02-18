@@ -63,4 +63,4 @@ def history_message(report):
     if report[5] is None:
         return message
     print(report)
-    return message + f"🟢Оплачено: {u_info(report[7])[4]}\nДата: {str(report[5]).split('.')[0].split(':')[:-1]}"
+    return message + f"🟢Оплачено: {u_info(report[7])[4]}\nДата: {':'.join(str(report[5]).split('.')[0].split(':')[:-1])}"
