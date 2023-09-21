@@ -25,7 +25,7 @@ async def approve_order_command(message):
     not_approved = get_reports_to_approve()
     await message.answer(messages.count_of_founded_documents(len(not_approved)))
     for report in not_approved:
-        doc = open(report[1], 'rb')
+        doc = open(report[0], 'rb')
         await message.reply_document(document=doc, caption=messages.approve_message(report),
                                      reply_markup=buttons.change_report_btn_2(report))
 
