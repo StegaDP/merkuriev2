@@ -26,7 +26,7 @@ async def handle_text(message, state):
     answer = f"Найденные совпадения по запросу {message.text}:\n"
     await message.answer(answer, reply_markup=buttons.back_to_menu_markup)
     for report in reports:
-        doc = open(report[1], 'rb')
+        doc = open(report[0], 'rb')
         res = messages.search_found(message.text.strip(), report)
         if res != '':
             kb = InlineKeyboardMarkup(resize_keyboard=True)
