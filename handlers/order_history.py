@@ -15,7 +15,7 @@ async def history(message):
     reports = get_reports_history()
     await message.answer(messages.count_of_founded_documents(len(reports)))
     for report in reports:
-        doc = open(report[1], 'rb')
+        doc = open(report[0], 'rb')
         kb = InlineKeyboardMarkup(resize_keyboard=True)
         await message.reply_document(document=doc, caption=messages.history_message(report),
                                      reply_markup=kb.add(InlineKeyboardButton("Перейти в обсуждение",
