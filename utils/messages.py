@@ -32,7 +32,8 @@ def get_all_posibilities():
 
 
 def approve_message(report):
-    message = f"⚪Создано: {u_info(report[0])[4]}\nОписание: {report[2]}\nДата: {':'.join(str(report[3]).split('.')[0].split(':')[:-1])}\n----------------------------\n"
+    print(report)
+    message = f"⚪Создано: {u_info(report[4])[4]}\nОписание: {report[2]}\nДата: {':'.join(str(report[3]).split('.')[0].split(':')[:-1])}\n----------------------------\n"
     return message
 
 
